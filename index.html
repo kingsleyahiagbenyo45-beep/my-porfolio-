@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kingsley | Graphic Designer</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Arial, sans-serif; }
+  html { scroll-behavior: smooth; }
+  body { background: #f8fafc; color: #0f172a; }
+
+  /* HEADER */
+  header { background: #0b1320; color: white; text-align: center; padding: 50px 20px; }
+  header h1 { font-size: 34px; color: #4da3ff; letter-spacing: 3px; margin-bottom: 10px; font-weight: 800; text-transform: uppercase; }
+  header p { font-size: 13px; color: #94a3b8; letter-spacing: 2px; font-weight: 600; text-transform: uppercase; }
+
+  /* NAV */
+  nav { background: #111827; display: flex; justify-content: center; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #1e293b; }
+  nav a { color: #cbd5e1; padding: 18px 25px; text-decoration: none; font-weight: 600; font-size: 13px; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+  nav a:hover { background: #4da3ff; color: #000; }
+
+  /* MENU BUTTON */
+  .menu-btn { display: none; background: #111827; color: white; font-size: 12px; padding: 10px 15px; cursor: pointer; text-align: right; border-bottom: 1px solid #1e293b; font-weight: 800; letter-spacing: 1px; }
+  @media (max-width: 768px) {
+    nav { display: none; flex-direction: column; text-align: center; width: 100%; }
+    nav.show { display: flex; }
+    .menu-btn { display: block; }
+  }
+
+  /* SECTIONS */
+  section { padding: 100px 20px; text-align: center; scroll-margin-top: 50px; }
+
+  /* HERO */
+  .home { background: linear-gradient(135deg, #0b1320, #1e293b); color: white; padding-top: 70px; }
+  .profile { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; object-position: top; border: 4px solid #4da3ff; margin-bottom: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.6); }
+  .home h2 { font-size: 24px; color: #4da3ff; margin-bottom: 15px; font-weight: 700; letter-spacing: 0.5px; }
+  .home p { font-size: 18px; color: #cbd5e1; max-width: 650px; margin: auto; line-height: 1.8; }
+  .btn { display: inline-block; margin-top: 35px; padding: 15px 30px; background: #4da3ff; color: black; font-weight: 800; text-decoration: none; border-radius: 4px; text-transform: uppercase; font-size: 13px; transition: 0.3s; }
+  .btn:hover { background: white; }
+
+  /* ABOUT */
+  .about { background: white; }
+  .about h2 { font-size: 30px; margin-bottom: 25px; font-weight: 800; color: #0f172a; text-transform: uppercase; }
+  .about p { max-width: 750px; margin: auto; font-size: 16px; line-height: 2; color: #475569; }
+
+  /* CV SECTION */
+  .cv-section { background: #0b1320; color: white; }
+  .cv-section h2 { font-size: 30px; margin-bottom: 15px; color: #4da3ff; font-weight: 800; text-transform: uppercase; }
+  .cv-section p { font-size: 15px; color: #94a3b8; margin-bottom: 35px; }
+  .cv-card { display: inline-flex; align-items: center; gap: 20px; background: #111827; border: 1px solid #1e293b; border-radius: 12px; padding: 25px 35px; max-width: 480px; width: 100%; text-align: left; }
+  .cv-icon { font-size: 40px; flex-shrink: 0; }
+  .cv-card-text h3 { font-size: 16px; font-weight: 800; color: white; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .cv-card-text p { font-size: 13px; color: #64748b; margin: 0 0 16px; }
+  .cv-download-btn { display: inline-block; padding: 12px 24px; background: #4da3ff; color: #000; font-weight: 800; font-size: 12px; text-decoration: none; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; transition: 0.3s; }
+  .cv-download-btn:hover { background: white; }
+
+  /* PORTFOLIO GRID */
+  .portfolio { background: #f1f5f9; }
+  .portfolio h2 { font-size: 32px; margin-bottom: 8px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: -0.5px; }
+  .portfolio .intro-text { font-size: 15px; color: #64748b; margin-bottom: 50px; font-weight: 500; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; max-width: 1200px; margin: auto; }
+  .card { background: white; border-radius: 15px; overflow: hidden; position: relative; box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: 0.4s ease; cursor: pointer; display: flex; flex-direction: column; border: 1px solid #e2e8f0; }
+  .card:hover { transform: translateY(-12px); box-shadow: 0 25px 50px rgba(0,0,0,0.12); }
+  .badge { position: absolute; top: 15px; right: 15px; background: #4da3ff; color: black; font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 4px; text-transform: uppercase; z-index: 5; }
+  .img-container { width: 100%; height: 260px; background: #fdfdfd; display: flex; align-items: center; justify-content: center; padding: 25px; }
+  .card img { max-width: 100%; max-height: 100%; object-fit: contain; pointer-events: none; }
+  .card-info { padding: 25px; text-align: left; background: white; border-top: 1px solid #f1f5f9; }
+  .card-info h3 { font-size: 16px; margin-bottom: 4px; color: #0f172a; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+  .card-info p { font-size: 13px; color: #64748b; line-height: 1.6; font-weight: 500; }
+
+  /* MODAL */
+  .modal { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(8,14,24,0.98); flex-direction: column; justify-content: flex-start; align-items: center; padding: 0; overflow-y: auto; }
+  .modal-inner { width: 100%; max-width: 1000px; padding: 60px 20px; display: flex; flex-direction: column; align-items: center; }
+  .modal-gallery { display: flex; flex-direction: column; align-items: center; gap: 50px; width: 100%; margin-bottom: 40px; }
+  .modal-item-container { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .modal-content { max-width: 100%; max-height: 85vh; border-radius: 4px; object-fit: contain; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+  .modal-details { color: white; text-align: center; max-width: 700px; width: 100%; border-top: 1px solid #1e293b; padding-top: 40px; }
+  .modal-details h2 { font-size: 26px; color: #4da3ff; margin-bottom: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+  .modal-details p { font-size: 15px; color: #94a3b8; line-height: 1.7; margin-bottom: 20px; font-weight: 400; }
+  .download-btn { display: inline-block; padding: 14px 30px; background: #4da3ff; color: #000; text-decoration: none; font-weight: 800; font-size: 12px; border-radius: 4px; text-transform: uppercase; transition: 0.3s; border: none; cursor: pointer; }
+  .download-btn:hover { background: white; transform: scale(1.05); }
+  .close-modal { position: fixed; top: 25px; right: 30px; color: white; font-size: 50px; cursor: pointer; opacity: 0.6; z-index: 10001; line-height: 1; }
+  .close-modal:hover { opacity: 1; }
+
+  /* TOAST */
+  #toast { visibility: hidden; min-width: 280px; background-color: #0f1923; color: #fff; text-align: center; border-radius: 2px; padding: 16px 24px; position: fixed; z-index: 10002; left: 50%; bottom: 30px; transform: translateX(-50%); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; border: 1px solid #4da3ff; box-shadow: 0 0 20px rgba(77,163,255,0.2), 0 10px 40px rgba(0,0,0,0.8); transition: visibility 0s, opacity 0.4s ease, transform 0.4s ease; opacity: 0; }
+  #toast.show { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(-10px); }
+  #toast .icon { color: #4da3ff; margin-right: 12px; font-size: 14px; }
+
+  /* CONTACT */
+  .contact { background: #111827; color: white; }
+  .contact h2 { font-size: 30px; margin-bottom: 30px; color: #4da3ff; font-weight: 800; text-transform: uppercase; }
+  .contact input, .contact textarea { width: 100%; max-width: 550px; padding: 16px; margin: 15px auto; display: block; border: 1px solid #1e293b; border-radius: 4px; font-size: 15px; background: #0b1320; color: white; }
+  .contact textarea { height: 150px; resize: none; }
+  .contact button { padding: 16px 35px; background: #4da3ff; border: none; font-weight: 800; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-size: 13px; transition: 0.3s; }
+  .contact button:hover { background: white; }
+
+  footer { background: #000; color: #475569; text-align: center; padding: 35px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>AHIAGBENYO KINGSLEY KEKELI</h1>
+  <p>GRAPHIC DESIGNER | BSC. IT STUDENT</p>
+</header>
+
+<div class="menu-btn" onclick="toggleMenu()">MENU ☰</div>
+
+<nav id="nav">
+  <a href="#home" onclick="closeMenu()">Home</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#portfolio" onclick="closeMenu()">Designs</a>
+  <a href="#cv" onclick="closeMenu()">CV</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</nav>
+
+<!-- HOME -->
+<section class="home" id="home">
+  <img alt="Profile Picture" class="profile" src="images/profile_pic.jpg"/>
+  <h2>Creative Graphic Designer</h2>
+  <p>I create modern, clean and impactful visual designs including posters, flyers, branding and social media content.</p>
+  <a class="btn" href="#portfolio">View My Designs</a>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <h2>About Me</h2>
+  <p>I am a passionate graphic designer focused on creating visually strong and modern designs. I specialize in branding, posters, social media graphics, and logo designs that communicate effectively.</p>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <h2>My Design Portfolio</h2>
+  <p class="intro-text">Explore some of my selected works below.</p>
+  <div class="grid">
+
+    <!-- Design 1 — main image + 1 extra = 2 total -->
+    <div class="card" onclick="openModal(this, ['images/bakery_sticker.png'])">
+      <div class="badge">+1 IMAGE</div>
+      <div class="img-container">
+        <img alt="Visual Identity" src="images/bakery.png"/>
+      </div>
+      <div class="card-info">
+        <h3>Visual Identity</h3>
+        <p>Branding and visual identity. The sticker is attached to any purchase made for delivery purposes.</p>
+      </div>
+    </div>
+
+    <!-- Design 2 — main image + 1 extra = 2 total -->
+    <div class="card" onclick="openModal(this, ['images/bday.jpg'])">
+      <div class="badge">+1 IMAGE</div>
+      <div class="img-container">
+        <img alt="Social Media Flyer" src="images/church.png"/>
+      </div>
+      <div class="card-info">
+        <h3>Social Media Flyer</h3>
+        <p>Projecting the thoughts and feelings of clients in a single art.</p>
+      </div>
+    </div>
+
+    <!-- Design 3 — main image + 1 extra = 2 total -->
+    <div class="card" onclick="openModal(this, ['images/asst_logo.jpg'])">
+      <div class="badge">+1 IMAGE</div>
+      <div class="img-container">
+        <img alt="Creative Artwork" src="images/main_logo.jpg"/>
+      </div>
+      <div class="card-info">
+        <h3>Creative Artwork</h3>
+        <p>Logo design for a fashion designer who wants to keep it simple and nothing related to needle and thread.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CV SECTION -->
+<section class="cv-section" id="cv">
+  <h2>My CV</h2>
+  <p>Download my curriculum vitae to learn more about my skills and experience.</p>
+  <div class="cv-card">
+    <div class="cv-icon">📄</div>
+    <div class="cv-card-text">
+      <h3>Ahiagbenyo Kingsley — CV</h3>
+      <p>Graphic Designer &amp; BSc. IT Student</p>
+      <!-- REPLACE images/cv.pdf with your actual CV file path -->
+      <a class="cv-download-btn" href="images/cv.pdf" download="Kingsley_Ahiagbenyo_CV.pdf">Download CV ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="projectModal" onclick="closeModal()">
+  <span class="close-modal" onclick="closeModal()">×</span>
+  <div class="modal-inner" onclick="event.stopPropagation()">
+    <div class="modal-gallery" id="modalGallery">
+      <!-- Populated by JS — each image gets its own download button -->
+    </div>
+    <div class="modal-details">
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc"></p>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"><span class="icon">✓</span><span id="toastMsg"></span></div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2>Contact Me</h2>
+  <form id="contactForm" onsubmit="sendEmail(event)">
+    <input id="fname" placeholder="Your Name" required type="text"/>
+    <input id="femail" placeholder="Your Email" required type="email"/>
+    <textarea id="fmessage" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2026 Kingsley Ahiagbenyo | Graphic Designer</p>
+</footer>
+
+<script>
+  function toggleMenu() { document.getElementById("nav").classList.toggle("show"); }
+  function closeMenu() { document.getElementById("nav").classList.remove("show"); }
+
+  function openModal(cardElement, extraImages) {
+    extraImages = extraImages || [];
+    const gallery = document.getElementById("modalGallery");
+    gallery.innerHTML = '';
+
+    const mainImgSrc = cardElement.querySelector('.img-container img').src;
+    const title = cardElement.querySelector('.card-info h3').innerText;
+    const desc  = cardElement.querySelector('.card-info p').innerText;
+    const allImages = [mainImgSrc].concat(extraImages);
+
+    const cleanTitle = title.replace(/[^\w\s-]/gi, '').replace(/\s+/g, '_').toLowerCase();
+
+    allImages.forEach(function(src, i) {
+      const ext = src.split('.').pop().split('?')[0].toLowerCase() || 'jpg';
+      const filename = cleanTitle + '_' + (i + 1) + '.' + ext;
+
+      const container = document.createElement('div');
+      container.className = 'modal-item-container';
+
+      const img = document.createElement('img');
+      img.src = src;
+      img.className = 'modal-content';
+      img.alt = title + ' image ' + (i + 1);
+      container.appendChild(img);
+
+      // FIX: Each image gets its OWN direct download link — no loop, no browser blocking
+      const dlLink = document.createElement('a');
+      dlLink.href = src;
+      dlLink.download = filename;
+      dlLink.className = 'download-btn';
+      dlLink.innerText = 'Download Image ' + (i + 1) + ' \u2193';
+      dlLink.addEventListener('click', function(e) {
+        e.stopPropagation();
+        showToast('Saving ' + filename + '...');
+      });
+      container.appendChild(dlLink);
+
+      gallery.appendChild(container);
+    });
+
+    document.getElementById("modalTitle").innerText = title;
+    document.getElementById("modalDesc").innerText  = desc;
+
+    const modal = document.getElementById("projectModal");
+    modal.style.display = "flex";
+    modal.scrollTop = 0;
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal() {
+    document.getElementById("projectModal").style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === "Escape") closeModal();
+  });
+
+  function showToast(message) {
+    const toast   = document.getElementById("toast");
+    const toastMsg = document.getElementById("toastMsg");
+    toastMsg.innerText = message;
+    toast.classList.add("show");
+    setTimeout(function() { toast.classList.remove("show"); }, 3500);
+  }
+
+  function sendEmail(event) {
+    event.preventDefault();
+    var name    = encodeURIComponent(document.getElementById("fname").value);
+    var email   = encodeURIComponent(document.getElementById("femail").value);
+    var message = encodeURIComponent(document.getElementById("fmessage").value);
+    window.location.href = 'mailto:kingsleyahiagbenyo45@gmail.com?subject=Message from ' + name + '&body=Email: ' + email + '%0D%0A%0D%0A' + message;
+    // FIX: Reset form fields after sending
+    document.getElementById("contactForm").reset();
+  }
+</script>
+
+</body>
+</html>
